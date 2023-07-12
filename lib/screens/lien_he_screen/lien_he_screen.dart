@@ -18,6 +18,46 @@ class LienHe extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           final item = listViewData[index];
           return ListTile(
+            onTap: (){
+                if (item.title == 'Hotline') {
+                  showModalBottomSheet(
+                      context: context,
+                      isDismissible: true,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20),
+                          topLeft: Radius.circular(20),
+                        )
+                      ),
+                      builder: (context)
+                  {
+                    return Container(
+                      margin: const EdgeInsets.symmetric(vertical: 20),
+                      height: 200,
+                      width: 420,
+                      child:
+                      const Column(
+                        children: [
+                          Text('Liên hệ dến tổng đài',textAlign: TextAlign.left,
+                            style: TextStyle(fontWeight: FontWeight.bold,
+                                fontSize:20)),
+                          Divider(
+                              color: Colors.black12
+                          ),
+                          Text('Gọi đến'),
+                          Text('1900 29 29 90'),
+                          Icon(Icons.phone, size: 60, color: Colors.blue),
+                          Row(
+                            children: [
+
+                            ],
+                          )
+                        ],
+                      ),
+                    );
+                  });
+                }
+            },
             title: Text(item.title),
             subtitle: Text(item.content),
           );
