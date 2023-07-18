@@ -4,6 +4,7 @@ import 'package:first_layout/screens/home_screen/home_screen.dart';
 import 'package:first_layout/screens/lien_he_screen/lien_he_screen.dart';
 import 'package:first_layout/screens/main_page/bottom_navigation_bar.dart';
 import 'package:first_layout/screens/profile/HoSoCaNhan/profile.dart';
+import 'package:first_layout/screens/profile/HoSoCaNhan/sua_thong_tin_tai_khoan.dart';
 import 'package:first_layout/screens/profile/menu_account.dart';
 import 'package:first_layout/screens/test/test_screen.dart';
 import 'package:first_layout/screens/tin_tuc_screen/tin_tuc_screen.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const DangNhap(),
+        home: const SuaThongTinTaiKhoan(),
       ));
   }
 }
