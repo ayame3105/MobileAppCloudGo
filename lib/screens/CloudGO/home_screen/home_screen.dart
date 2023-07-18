@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:first_layout/screens/profile/menu_account.dart';
+import 'package:first_layout/screens/CloudGO/profile/menu_account.dart';
+import 'package:first_layout/screens/CloudSALES/screens/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -126,25 +127,36 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             itemCount: gridImageList.length,
             itemBuilder: (BuildContext context, int index) {
-              return Column(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
-                    child: Image.asset(
-                      gridImageList[index],
-                      width: 50,
-                      height: 50,
-                      fit: BoxFit.fill,
+              return InkWell(
+                onTap: (){
+                  if (gridTextList[index] == 'CloudSALES') {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Home()),
+                    );
+                  }
+                },
+                child: Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(30),
+                      child: Image.asset(
+                        gridImageList[index],
+                        width: 50,
+                        height: 50,
+                        fit: BoxFit.fill,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    gridTextList[index],
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
+                    const SizedBox(height: 10),
+                    Text(
+                      gridTextList[index],
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               );
             },
           ),
