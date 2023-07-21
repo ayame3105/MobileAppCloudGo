@@ -47,11 +47,6 @@ class LienHe extends StatelessWidget {
                           Text('Gọi đến'),
                           Text('1900 29 29 90'),
                           Icon(Icons.phone, size: 60, color: Colors.blue),
-                          Row(
-                            children: [
-
-                            ],
-                          )
                         ],
                       ),
                     );

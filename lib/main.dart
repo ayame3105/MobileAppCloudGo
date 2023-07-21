@@ -6,7 +6,10 @@ import 'package:first_layout/screens/CloudGO/main_page/bottom_navigation_bar.dar
 import 'package:first_layout/screens/CloudGO/profile/HoSoCaNhan/profile.dart';
 import 'package:first_layout/screens/CloudGO/profile/HoSoCaNhan/sua_thong_tin_tai_khoan.dart';
 import 'package:first_layout/screens/CloudGO/profile/menu_account.dart';
+import 'package:first_layout/screens/CloudSALES/screens/home/chart_model/bar_chart_widget.dart';
 import 'package:first_layout/screens/CloudSALES/screens/home/home.dart';
+import 'package:first_layout/screens/CloudSALES/screens/home/lich/list/lead/listview_lead.dart';
+import 'package:first_layout/screens/CloudSALES/screens/home/lich/list/lead/more_option.dart';
 import 'package:first_layout/screens/test/test_screen.dart';
 import 'package:first_layout/screens/CloudGO/tin_tuc_screen/tin_tuc_screen.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +49,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const MainPage(),
+        home: const DangNhap(),
       ));
   }
 }
