@@ -5,6 +5,7 @@ import 'package:first_layout/screens/CloudGO/lien_he_screen/lien_he_screen.dart'
 import 'package:first_layout/screens/CloudGO/main_page/bottom_navigation_bar.dart';
 import 'package:first_layout/screens/CloudGO/profile/HoSoCaNhan/profile.dart';
 import 'package:first_layout/screens/CloudGO/profile/HoSoCaNhan/sua_thong_tin_tai_khoan.dart';
+import 'package:first_layout/screens/CloudGO/profile/cai_dat/cai_dat.dart';
 import 'package:first_layout/screens/CloudGO/profile/menu_account.dart';
 import 'package:first_layout/screens/CloudSALES/screens/home/chart_model/bar_chart_widget.dart';
 import 'package:first_layout/screens/CloudSALES/screens/home/home.dart';
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const DangNhap(),
+        home: const HoSoCaNhan(),
       ));
   }
 }
