@@ -1,3 +1,4 @@
+import 'package:first_layout/blocs/lead_info_bloc/lead_info_bloc.dart';
 import 'package:first_layout/blocs/user_info_bloc/user_info_bloc.dart';
 import 'package:first_layout/screens/CloudGO/dang_nhap_screen/dang_nhap_screen.dart';
 import 'package:first_layout/screens/CloudGO/home_screen/home_screen.dart';
@@ -42,6 +43,8 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (BuildContext context) => UserInfoBloc()
           ),
+          BlocProvider(
+              create: (BuildContext context) => LeadInfoBloc())
         ],
         child:    MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -50,7 +53,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const HoSoCaNhan(),
+        home: const Home(),
       ));
   }
 }
