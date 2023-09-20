@@ -1,22 +1,17 @@
 import 'package:first_layout/blocs/lead_info_bloc/lead_info_bloc.dart';
 import 'package:first_layout/blocs/user_info_bloc/user_info_bloc.dart';
+import 'package:first_layout/screens/CLoudWORK/cloud_work.dart';
 import 'package:first_layout/screens/CloudGO/dang_nhap_screen/dang_nhap_screen.dart';
 import 'package:first_layout/screens/CloudGO/home_screen/home_screen.dart';
-import 'package:first_layout/screens/CloudGO/lien_he_screen/lien_he_screen.dart';
-import 'package:first_layout/screens/CloudGO/main_page/bottom_navigation_bar.dart';
-import 'package:first_layout/screens/CloudGO/profile/HoSoCaNhan/profile.dart';
-import 'package:first_layout/screens/CloudGO/profile/HoSoCaNhan/sua_thong_tin_tai_khoan.dart';
-import 'package:first_layout/screens/CloudGO/profile/cai_dat/cai_dat.dart';
-import 'package:first_layout/screens/CloudGO/profile/menu_account.dart';
-import 'package:first_layout/screens/CloudSALES/screens/home/chart_model/bar_chart_widget.dart';
+import 'package:first_layout/screens/CloudGO/splash_screen/hello.dart';
+import 'package:first_layout/screens/CloudGO/splash_screen/splash_screen.dart';
 import 'package:first_layout/screens/CloudSALES/screens/home/home.dart';
-import 'package:first_layout/screens/CloudSALES/screens/home/lich/list/lead/listview_lead.dart';
-import 'package:first_layout/screens/CloudSALES/screens/home/lich/list/lead/more_option.dart';
-import 'package:first_layout/screens/test/test_screen.dart';
-import 'package:first_layout/screens/CloudGO/tin_tuc_screen/tin_tuc_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import "package:flutter_bloc/flutter_bloc.dart";
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -46,14 +41,15 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (BuildContext context) => LeadInfoBloc())
         ],
-        child:    MaterialApp(
+        child:
+        MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const Home(),
+        home: Hello(),
       ));
   }
 }

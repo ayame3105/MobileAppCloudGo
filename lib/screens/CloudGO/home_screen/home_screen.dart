@@ -1,4 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:first_layout/screens/CLoudWORK/cloud_work.dart';
+import 'package:first_layout/screens/CloudCALL/cloud_call.dart';
 import 'package:first_layout/screens/CloudGO/profile/menu_account.dart';
 import 'package:first_layout/screens/CloudSALES/screens/home/home.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: SingleChildScrollView(
           child: Column(children: [
       SizedBox(
-          height: 300,
+          height: maxHeight*0.45,
           child: Stack(
             children: [
               Container(
@@ -51,9 +53,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       const Padding(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 60),
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 55),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text('Buổi sáng tốt lành'),
                             Text(
@@ -68,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Positioned(
-                top: 100,
+                top: maxWidth*0.28,
                 left: 0,
                 right: 0,
                 child: Column(
@@ -93,6 +96,24 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
+                        Container(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              'assets/images/crm_raw.png',
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              'assets/images/CRM_for_startup.png',
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
                       ],
                       options: CarouselOptions(
                         enlargeCenterPage: true,
@@ -107,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     AnimatedSmoothIndicator(
                         activeIndex: activeIndex,
-                        count: 2)
+                        count: 4)
                   ],
                 ),
 
@@ -116,14 +137,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
       ),
-      const SizedBox(height: 10),
-      SizedBox(
-          height: maxHeight * 0.3,
+           SizedBox(
+          height: maxHeight * 0.32,
           child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
+              // crossAxisSpacing: 10,
+              // mainAxisSpacing: 10,
             ),
             itemCount: gridImageList.length,
             itemBuilder: (BuildContext context, int index) {
@@ -134,6 +154,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => const Home()),
+                    );
+                  }
+                  if (gridTextList[index] == 'CloudCALL') {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CloudCALL()),
+                    );
+                  }
+                  if (gridTextList[index] == 'CloudWORK') {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => BauCuaGame()),
                     );
                   }
                 },
@@ -181,7 +215,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       SizedBox(
           width: maxWidth,
-          height: 300,
+          height: maxHeight*0.21,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: listViewData.length,
