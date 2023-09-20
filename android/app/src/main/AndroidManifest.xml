@@ -7,7 +7,7 @@
         android:requestLegacyExternalStorage="true"
         android:label="CloudGO"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_icon"
         >
 
         <activity

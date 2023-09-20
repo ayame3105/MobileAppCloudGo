@@ -71,24 +71,24 @@ dev_dependencies:
   url_launcher: ^6.1.14
   flutter_phone_direct_caller: ^2.0.0
   camera: ^0.10.5+4
-
+  flutter_launcher_icons: ^0.13.1
 
 
 flutter_icons:
-  android: "launcher_icon"
+  android: "ic_launcher_icon"
   ios: true
-  image_path: "assets/ic_launcher.jpg"
+  image_path: "assets/ic_launcher.png"
   min_sdk_android: 21
   web:
     generate: true
-    image_path: "assets/ic_launcher.jpg"
+    image_path: "assets/ic_launcher.png"
   windows:
     generate: true
-    image_path: "assets/ic_launcher.jpg"
+    image_path: "assets/ic_launcher.png"
     icon_size: 48
   macos:
     generate: true
-    image_path: "assets/ic_launcher.jpg"
+    image_path: "assets/ic_launcher.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
