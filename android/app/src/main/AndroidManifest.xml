@@ -8,6 +8,7 @@
         android:label="CloudGO"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher_icon"
+        android:enableOnBackInvokedCallback="true"
         >
 
         <activity
