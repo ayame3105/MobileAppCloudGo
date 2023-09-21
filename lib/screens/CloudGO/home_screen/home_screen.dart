@@ -2,13 +2,17 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:first_layout/blocs/firebase_user_bloc/login_bloc.dart';
 import 'package:first_layout/screens/CLoudWORK/cloud_work.dart';
 import 'package:first_layout/screens/CloudCALL/cloud_call.dart';
+import 'package:first_layout/screens/CloudGO/profile/HoSoCaNhan/profile.dart';
+import 'package:first_layout/screens/CloudGO/profile/about_us/about_us.dart';
 import 'package:first_layout/screens/CloudGO/profile/menu_account.dart';
+import 'package:first_layout/screens/CloudGO/splash_screen/hello.dart';
 import 'package:first_layout/screens/CloudSALES/screens/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -38,10 +42,43 @@ class _HomeScreenState extends State<HomeScreen> {
     return BlocBuilder<LoginInfoBloc, LoginInfoState>(
         builder: (context, state) {
        return Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            actions: [
+              IconButton(
+                  onPressed: (){
+                    FirebaseAuth auth = FirebaseAuth.instance;
+                    User? user = auth.currentUser;
+                    var uid = user?.uid;
+                    FirebaseFirestore.instance.collection('Users').doc(uid)
+                        .get().then((DocumentSnapshot documentSnapshot) {
+                      if (documentSnapshot.exists) {
+                        String hoten = documentSnapshot['hoten'];
+                        String email = documentSnapshot['email'];
+                        print('------------------');
+                        print('Uid: ${uid}');
+                        print('Hoten: ${hoten}');
+                        print('Email: ${email}');
+                        print('------------------');
+                        context.read<LoginInfoBloc>().add(GetTokenEvent(
+                            token: uid,
+                            hoten: hoten,
+                            email: email
+                        ));
+                        print("State uid: ${state.token}");
+                        print("State hoten: ${state.hoten}");
+                        print("State email: ${state.email}");
+                        print('------------------');
+                      }
+                      else {
+                        print('Tài liệu không tồn tại');
+                      }
+                    });
+                  },
+                  icon: Icon(Icons.refresh)),
+            ],
+          ),
           drawer: Drawer(
-            child: ListView(
-              padding: EdgeInsets.zero,
+            child: Column(
               children: [
                  DrawerHeader(
                   decoration: BoxDecoration(
@@ -52,14 +89,130 @@ class _HomeScreenState extends State<HomeScreen> {
                       Container(
                         height: 100,
                         width: 100,
-                        decoration: BoxDecoration(
-                          color: Colors.white70,
-                          borderRadius: BorderRadius.circular(50),
-                        )),
-                      Text(state.hoten)
+                        child: CircleAvatar(
+                          backgroundImage: NetworkImage('https://banner2.cleanpng.com/20180418/xqw/kisspng-avatar-computer-icons-business-business-woman-5ad736ba3f2735.7973320115240536902587.jpg'),
+                        ),
+                      ),
+                      // Container(
+                      //   height: 100,
+                      //   width: 100,
+                      //   decoration: BoxDecoration(
+                      //     color: Colors.white70,
+                      //     borderRadius: BorderRadius.circular(50),
+                      //   )),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 12),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(state.hoten, style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
+                            Text(state.email),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
+                ListTile(
+                  onTap: (){
+                    Navigator.of(context).pop();
+                      Navigator.push(context, MaterialPageRoute(builder: (context)
+                      => HoSoCaNhan()));
+                  },
+                  title: Text('Tài khoản'),
+                  leading: Icon(Icons.person),
+                ),
+
+                ExpansionTile(
+                  title: Text("Danh mục"),
+                  leading: Icon(Icons.category), //add icon
+                  childrenPadding: EdgeInsets.only(left:60), //children padding
+                  children: [
+                    ListTile(
+                      leading: Icon(Icons.insights_sharp),
+                      title: Text("CloudSALES"),
+                      onTap: (){
+                        Navigator.of(context).pop();
+                        Navigator.push(context, MaterialPageRoute(builder: (context)
+                        => Home()));
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.work),
+                      title: Text("CloudWORK"),
+                      onTap: (){
+                        Navigator.of(context).pop();
+                        Navigator.push(context, MaterialPageRoute(builder: (context)
+                        => BauCuaGame()));
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.camera_alt),
+                      title: Text("CloudCAM"),
+                      onTap: (){
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.emoji_people),
+                      title: Text("CloudCARE"),
+                      onTap: (){
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.call),
+                      title: Text("CloudCALL"),
+                      onTap: (){
+                        Navigator.of(context).pop();
+                        Navigator.push(context, MaterialPageRoute(builder: (context)
+                        => CloudCALL()));
+                      },
+                    ),
+
+                    //more child menu
+                  ],
+                ),
+                ListTile(
+                  onTap: (){
+
+                  },
+                  title: Text('Lọc'),
+                  leading: Icon(Icons.filter_alt),
+                ),
+                ListTile(
+                  onTap: (){
+
+                  },
+                  title: Text('Cài đặt'),
+                  leading: Icon(Icons.settings),
+                ),
+                ListTile(
+                  onTap: (){
+                    Navigator.of(context).pop();
+                    Navigator.push(context, MaterialPageRoute(builder: (context)
+                    => AboutUs()));
+                  },
+                  title: Text('Giúp đỡ'),
+                  leading: Icon(Icons.help),
+                ),
+                ListTile(
+                  onTap: (){
+                    FirebaseAuth.instance.signOut();
+                    Fluttertoast.showToast(
+                        msg: "Đăng xuất thành công 😎",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        textColor: Colors.white,
+                        fontSize: 16.0
+                    );
+                    Navigator.of(context).pop();
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)
+                    => Hello()));
+                  },
+                  title: Text('Đăng xuất'),
+                  leading: Icon(Icons.logout),
+                ),
+
               ],
             ),
           ),
@@ -96,41 +249,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                             "sdasdsd",
+                             state.hoten,
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                           ),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: IconButton(
-                                onPressed: (){
-                                  final FirebaseAuth auth = FirebaseAuth.instance;
-                                  final User? user = auth.currentUser;
-                                  final uid = user?.uid;
-
-                                  FirebaseFirestore.instance
-                                      .collection('Users')
-                                      .doc(uid)
-                                      .get()
-                                      .then((DocumentSnapshot documentSnapshot) {
-                                    if (documentSnapshot.exists) {
-                                      String hoten = documentSnapshot['hoten'];
-                                      String email = documentSnapshot['email'];
-
-                                      context.read<LoginInfoBloc>().add(GetTokenEvent(
-                                          token: uid,
-                                          hoten: hoten,
-                                          email: email
-                                      ));
-
-
-                                    } else {
-                                      print('Tài liệu không tồn tại');
-                                    }
-                                  });
-                                },
-                                icon: Icon(Icons.refresh)),
-                          )
                         ],
                       ),
                     ),
